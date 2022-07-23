@@ -25,6 +25,7 @@ const agregarTarea = (e) => {
         tarea: tarea
     }
     tareas = [...tareas, tareasObjeto]
+    mostrarExito('Tarea agregada exitosamente')
     agregarHTML()
     formulario.reset()
 }
@@ -79,7 +80,27 @@ const mostrarError = (mensaje) => {
     setTimeout(() => {
         parrafoError.remove()
     }, 2000);
-
 }
+
+const mostrarExito = (mensaje) => {
+    const contenedor = document.querySelector('#contenido-principal')
+    const alerta = document.querySelector('#contenedor')
+    const parrafoExito = document.createElement('P')
+    const exitoPrevio = document.querySelector('p.exito')
+    if (exitoPrevio) {
+        return
+    }
+    parrafoExito.classList.add('exito')
+    parrafoExito.textContent = mensaje
+    contenedor.insertBefore(parrafoExito, alerta)
+    setTimeout(() => {
+        parrafoExito.remove()
+    }, 2000);
+}
+
+
+
+
+
 
 app()
