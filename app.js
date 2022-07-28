@@ -17,7 +17,8 @@ const agregarTarea = (e) => {
     e.preventDefault()
     const tarea = document.querySelector('#tarea').value
     if (tarea === '') {
-        mostrarError('Por favor agrega una tarea a la lista 😥')
+        mostrarMensaje('Por favor agrega una tarea a la lista 😥', 'error')
+        //mostrarError('Por favor agrega una tarea a la lista 😥')
         return
     }
     const tareasObjeto = {
@@ -25,7 +26,7 @@ const agregarTarea = (e) => {
         tarea: tarea
     }
     tareas = [...tareas, tareasObjeto]
-    mostrarExito('Tarea agregada exitosamente')
+    mostrarMensaje('Tarea agregada exitosamente', 'exito')
     agregarHTML()
     formulario.reset()
 }
@@ -67,37 +68,32 @@ const limpiaHTML = () => {
     }
 }
 
-const mostrarError = (mensaje) => {
+
+const mostrarMensaje = (mensaje, tipoAlerta) => {
     const contenedor = document.querySelector('#contenido-principal')
-    const parrafoError = document.createElement('P')
+    const alerta = document.querySelector('#contenedor')
     const errorPrevio = document.querySelector('p.error')
+    const exitoPrevio = document.querySelector('p.exito')
+    const alert = document.createElement('P')
     if (errorPrevio) {
         return
     }
-    parrafoError.classList.add('error')
-    parrafoError.textContent = mensaje
-    contenedor.appendChild(parrafoError)
-    setTimeout(() => {
-        parrafoError.remove()
-    }, 2000);
-}
-
-const mostrarExito = (mensaje) => {
-    const contenedor = document.querySelector('#contenido-principal')
-    const alerta = document.querySelector('#contenedor')
-    const parrafoExito = document.createElement('P')
-    const exitoPrevio = document.querySelector('p.exito')
     if (exitoPrevio) {
         return
     }
-    parrafoExito.classList.add('exito')
-    parrafoExito.textContent = mensaje
-    contenedor.insertBefore(parrafoExito, alerta)
+    if (tipoAlerta === 'error') {
+        alert.classList.add('error')
+        contenedor.appendChild(alert)
+    }
+    else {
+        alert.classList.add('exito')
+        contenedor.insertBefore(alert, alerta)
+    }
     setTimeout(() => {
-        parrafoExito.remove()
-    }, 2000);
+        alert.remove()
+    }, 3000);
+    alert.textContent = mensaje
 }
-
 
 
 
