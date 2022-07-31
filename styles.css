@@ -94,3 +94,16 @@ li {
     margin-bottom: 8px;
     text-align: left;
 }
+
+.exito {
+    background-color: rgba(75, 250, 40, 0.945);
+    padding: .75rem;
+    text-align: center;
+    width: 25%;
+    float: right;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 700;
+    border-radius: 15px;
+    margin: 0;
+}
