@@ -1,10 +1,12 @@
 const formulario = document.querySelector('#formulario')
 const listaDeTareas = document.querySelector('#lista-tareas')
+const eliminar = document.querySelector('#btn-eliminar')
 let tareas = []
 
 
 const app = () => {
     formulario.addEventListener('submit', agregarTarea)
+    eliminar.addEventListener('click', eliminarTareas)
     // * Al cargar el contenido
     document.addEventListener('DOMContentLoaded', () => {
         tareas = JSON.parse(localStorage.getItem('tareas') || [])
@@ -91,11 +93,19 @@ const mostrarMensaje = (mensaje, tipoAlerta) => {
     }
     setTimeout(() => {
         alert.remove()
-    }, 3000);
+    }, 1000);
     alert.textContent = mensaje
 }
 
 
+const eliminarTareas = () => {
+    if (tareas.length === 0) {
+        mostrarMensaje('No hay tareas que eliminar,intenta agregando una', 'error')
+    }
+    tareas = []
+    console.log(tareas);
+    agregarHTML()
+}
 
 
 
